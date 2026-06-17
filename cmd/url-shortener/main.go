@@ -3,11 +3,12 @@ package main
 import (
 	"log/slog"
 	"os"
-	"url_shortener/internal/config"
-	"url_shortener/internal/lib/logger/sl"
-	"url_shortener/internal/storage/sqlite"
+	"url-shortener/internal/config"
+	"url-shortener/internal/lib/logger/sl"
+	"url-shortener/internal/storage/sqlite"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 const (
@@ -32,8 +33,9 @@ func main() {
 	_ = storage
 
 	router := chi.NewRouter()
-	_ = router
-
+	
+	router.Use(middleware.RequestID)
+	router.Use(middleware.Logger)
 	// TODO: run server
 }
 

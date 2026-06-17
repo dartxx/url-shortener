@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"url_shortener/internal/storage"
+	"url-shortener/internal/storage"
 
 	"github.com/mattn/go-sqlite3"
 )
@@ -80,7 +80,7 @@ func (s *Storage) GetURL(alias string) (string, error) {
 		if errors.Is(err, sql.ErrNoRows) {
 			return "", fmt.Errorf("%s: %w", op, storage.ErrURLNotFound)
 		}
-		
+
 		return "", fmt.Errorf("%s: %w", op, err)
 	}
 
