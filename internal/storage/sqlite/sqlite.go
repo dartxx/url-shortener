@@ -75,7 +75,7 @@ func (s *Storage) GetURL(alias string) (string, error) {
 
 	var resURL string
 	err = stmt.QueryRow(alias).Scan(&resURL)
-	
+
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return "", fmt.Errorf("%s: %w", op, storage.ErrURLNotFound)
