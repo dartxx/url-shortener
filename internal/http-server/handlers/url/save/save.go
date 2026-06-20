@@ -28,10 +28,7 @@ type URLSaver interface {
 	SaveURL(urlToSave, alias string) (int64, error)
 }
 
-// TODO: move to config
-const aliasLength = 6
-
-func New(log *slog.Logger, urlSaver URLSaver) http.HandlerFunc {
+func New(log *slog.Logger, urlSaver URLSaver, aliasLength int) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		const op = "handlers.url.save.New"
 
